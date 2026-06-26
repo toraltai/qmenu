@@ -3,6 +3,9 @@ from app.router import api_router
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 from config import settings
+from contextlib import asynccontextmanager
+from app.users.service import UserService
+from app.users.repository import TortoiseRepository
 
 
 app = FastAPI()
@@ -20,6 +23,13 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix='/api/v1')
+
+@app.on_event("startup")
+async def startup():
+    repo = TortoiseRepository()
+    service = UserService(repo)
+
+    await service.create_admin()
 
 
 register_tortoise(

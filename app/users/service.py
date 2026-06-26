@@ -42,6 +42,14 @@ class UserService:
     async def register(self, user: CreateUser): #type: ignore
         return await self.repo.create(user)
     
+    async def create_admin(self):
+        if await User.get_or_none(name="admin"):
+            return
+        await self.repo.create_admin(
+            name="admin",
+            password="admin"
+        )
+    
     async def login(self, username: str, password: str):
         user = await authenticate_user(username, password)
         if not user:
@@ -57,3 +65,4 @@ class UserService:
             "access_token": token,
             "user_id": user.id
         }
+    

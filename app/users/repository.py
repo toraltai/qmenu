@@ -12,3 +12,9 @@ class TortoiseRepository:
         await user_obj.save()
 
         return await GetUser.from_tortoise_orm(user_obj)
+    
+    async def create_admin(self, name: str, password: str):
+        user = User(name=name)
+        user.set_password(password)
+        await user.save()
+        return user
