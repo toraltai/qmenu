@@ -11,7 +11,7 @@ repo = TortoiseRepository()
 service = CompanyService(repo)
 
 
-@companyRouter.get('/all', response_model=List[GetCompany])
+@companyRouter.get('/all')
 async def test():
     return await service.list_of_company()
 
