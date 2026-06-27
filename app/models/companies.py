@@ -12,5 +12,5 @@ class Company(Model):
 
 
 Tortoise.init_models(["app.models.companies"], "models")
-GetCompany = pydantic_model_creator(Company, name='Company')
+GetCompany = pydantic_model_creator(Company, name='Company', exclude=['user.password_hash'])
 CreateCompany = pydantic_model_creator(Company, name='CompanyIn', exclude_readonly=True)

@@ -35,10 +35,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
 class UserService:
     def __init__(self, repo: TortoiseRepository):
         self.repo = repo
-
-    async def test(self):
-        return await self.repo.test()
-    
+        
     async def register(self, user: CreateUser): #type: ignore
         return await self.repo.create(user)
     

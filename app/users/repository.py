@@ -1,10 +1,7 @@
 from ..models.users import *
 
 
-class TortoiseRepository:
-    async def test(self):
-        return {"hello":"world"}
-    
+class TortoiseRepository:    
     async def create(self, user: CreateUser): #type: ignore
         user_obj = User(name=user.name)
         user_obj.set_password(user.password_hash)

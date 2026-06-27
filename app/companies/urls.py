@@ -11,11 +11,11 @@ repo = TortoiseRepository()
 service = CompanyService(repo)
 
 
-@companyRouter.get('/')
-async def test():
-    return await service.test()
-
-
 @companyRouter.get('/all', response_model=List[GetCompany])
 async def test():
     return await service.list_of_company()
+
+
+@companyRouter.post('/', response_model=GetCompany)
+async def add_company(company: CreateCompany): #type: ignore
+    return await service.create_company(company)

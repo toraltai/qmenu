@@ -10,11 +10,6 @@ repo = TortoiseRepository()
 service = UserService(repo)
 
 
-@userRouter.get("/")
-async def get():
-    return await service.test()
-
-
 @userRouter.post("/reg")
 async def register(user: CreateUser): #type: ignore
     return await service.register(user)
