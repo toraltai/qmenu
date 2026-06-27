@@ -1,4 +1,4 @@
-from .repository import TortoiseRepository
+from .repository import *
 
 
 class CompanyService:
@@ -7,3 +7,6 @@ class CompanyService:
 
     async def test(self):
         return await self.repo.test()
+    
+    async def list_of_company(self):
+        return await self.repo.list_of_company()
